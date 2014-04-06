@@ -1,0 +1,8 @@
+vbell off
+startup_message off
+
+# Use 256 colors
+term screen-256color
+
+# Use X scrolling mechanism
+termcapinfo xterm* ti@:te@
