@@ -19,6 +19,10 @@
 (require 'uniquify)
 
 ;; Insert parentheses in pairs
+;; (add-to-list 'load-path "~/.emacs.d/smartparens")
+;; (require 'dash)
+;; (require 'smartparens-config)
+;; (load "init-smartparens")
 (electric-pair-mode 1)
 
 ;; Set width of screen for the purpose of word-wrapping (enable `auto-fill-mode')
