@@ -18,12 +18,23 @@
 ;; Buffer names management (cf `custom-set-variables')
 (require 'uniquify)
 
+;; Load package management related content
+(load "~/.emacs.d/init-package")
+
 ;; Insert parentheses in pairs
-;; (add-to-list 'load-path "~/.emacs.d/smartparens")
-;; (require 'dash)
-;; (require 'smartparens-config)
-;; (load "init-smartparens")
-(electric-pair-mode 1)
+(load "~/.emacs.d/init-smartparens")
+;; (electric-pair-mode 1)
+
+;; Load ace-jump-mode
+;; "C-c SPC" --> ace-jump-word-mode
+;; "C-u C-c SPC" --> ace-jump-char-mode
+;; "C-u C-u C-c SPC" --> ace-jump-line-mode
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; Set width of screen for the purpose of word-wrapping (enable `auto-fill-mode')
 (setq-default fill-column 78)
@@ -192,6 +203,7 @@
  '(font-lock-type-face ((t (:foreground "maroon" :inverse-video nil :underline nil :slant normal :weight normal))))
  '(font-lock-variable-name-face ((t (:foreground "blue"))))
  '(org-latex-and-related ((t (:foreground "color-59"))))
+ '(sp-show-pair-enclosing ((t (:background "brightblack" :foreground "white"))))
  '(sp-show-pair-match-face ((t (:background "dark cyan" :foreground "white"))))
  '(sp-show-pair-mismatch-face ((t (:background "dark red" :foreground "white")))))
 (put 'narrow-to-region 'disabled nil)
