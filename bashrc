@@ -113,11 +113,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -z $STY ]
-then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='\[\e[0;32m\][\[\e[0m\]\u@\h \W\[\e[0;32m\]]\$\[\e[0m\] '
+# Custom
+if [ -f ~/.bashrc_custom ]; then
+    . ~/.bashrc_custom
 fi
-
-source ~/.bashrc_custom
