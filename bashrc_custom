@@ -28,7 +28,7 @@ alias cp='cp -i'
 alias sudo='sudo '
 
 # Random strings (defaults to eight character length)
-alias rstring="< /dev/urandom tr -dc A-Za-z0-9_%\$ | head -c8"
+alias rstring="< /dev/urandom tr -dc A-Za-z0-9_%\$ | head -c8 && echo"
 
 # Colored man pages using `less'
 man() {

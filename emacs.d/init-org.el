@@ -64,10 +64,11 @@
      (add-hook 'org-mode-hook 'my-org-mode-hook)))
 
 ;; ;; Org-mode source code execution
-;; (org-babel-do-load-languages 'org-babel-load-languages
-;; 			     '((emacs-lisp . t)
-;; 			       (R . t)
-;; 			       (python . t)
-;; 			       (octave . t)))
+(org-babel-do-load-languages 'org-babel-load-languages
+			     '((emacs-lisp . t)
+			       (R . t)
+			       (python . t)
+			       (octave . t)
+			       (latex . t)))
 ;; Fontify source code blocks
 (setq org-src-fontify-natively t)
