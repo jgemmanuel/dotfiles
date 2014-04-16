@@ -70,6 +70,13 @@
 (setq auto-mode-alist
       (cons '("\\.m$" . octave-mode) auto-mode-alist))
 
+;; Jade- and Stylus-modes
+(add-to-list 'load-path "~/.emacs.d/jade-mode")
+(require 'sws-mode)
+(require 'jade-mode)
+(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
+(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+
 ;; Toggle window split (Only works for two windows within single frame)
 (defun toggle-window-split ()
   (interactive)
@@ -148,6 +155,12 @@
              webFont: \"TeX\",
              imageFont: \"TeX\",
              showMathMenu: true,
+             styles: {			// increase margins
+	         \".MathJax_Display\": {
+                     \"text-align\": \"center\",
+                     margin: \"1.75em 0em\"
+                 }
+	     }
         },
         MMLorHTML: {
              prefer: {
@@ -167,7 +180,9 @@
                  abs: [\"{\\\\left\\\\lvert #1\\\\right\\\\rvert}\", 1],
                  Expect: [\"{\\\\mathrm{E}\\\\Brac{#1}}\", 1],
                  pD: [\"{\\\\frac{\\\\partial #1}{\\\\partial #2}}\", 2],
-                 coloneqq: \"{\\\\mathrel{\\\\vcenter{:}}=}\"
+                 coloneqq: \"{\\\\mathrel{\\\\vcenter{:}}=}\",
+                 intercal: \"{\\\\top}\",
+                 bm: [\"{\\\\bf #1}\", 1]
              }
         }
     });
