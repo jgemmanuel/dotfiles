@@ -112,6 +112,10 @@
 (global-set-key (kbd "S-<down>") 'windmove-down)
 
 
+;;;; Putty + SHIFT *
+;; (define-key input-decode-map "ESC-[ a" [S-up])
+
+
 ;;;; Custom
 
 (custom-set-variables

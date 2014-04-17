@@ -24,3 +24,5 @@ fi
 export SUDO_EDITOR=/usr/bin/emacs
 export LANG="en_GB.UTF-8"
 export LANGUAGE="en_GB:en_US:en"
+
+export PATH="/usr/local/heroku/bin:$PATH"
