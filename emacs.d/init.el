@@ -9,7 +9,7 @@
 ;; Load smooth-scrolling
 (add-to-list 'load-path "~/.emacs.d")
 (require 'smooth-scrolling)
-(setq smooth-scroll-margin 5)
+;; (setq smooth-scroll-margin 5)
 
 ;; Load Org-mode
 (add-to-list 'load-path "~/.emacs.d/org-8.2.5h/lisp")
@@ -65,6 +65,9 @@
 ;; shell-mode (fix regarding garbled characters)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
+;; flyspell-mode
+(add-hook 'LaTeX-mode-hook '(flyspell-mode t))
+
 ;; Autolad Octave mode for *.m files
 (autoload 'octave-mode "octave-mod" nil t)
 (setq auto-mode-alist
@@ -110,10 +113,6 @@
 (global-set-key (kbd "S-<right>") 'windmove-right)
 (global-set-key (kbd "S-<up>") 'windmove-up)
 (global-set-key (kbd "S-<down>") 'windmove-down)
-
-
-;;;; Putty + SHIFT *
-;; (define-key input-decode-map "ESC-[ a" [S-up])
 
 
 ;;;; Custom
