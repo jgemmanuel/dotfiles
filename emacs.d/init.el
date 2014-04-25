@@ -218,6 +218,7 @@
  '(font-lock-type-face ((t (:foreground "maroon" :inverse-video nil :underline nil :slant normal :weight normal))))
  '(font-lock-variable-name-face ((t (:foreground "blue"))))
  '(org-latex-and-related ((t (:foreground "color-59"))))
+ '(sp-pair-overlay-face ((t (:background "brightblack" :foreground "white"))))
  '(sp-show-pair-enclosing ((t (:background "brightblack" :foreground "white"))))
  '(sp-show-pair-match-face ((t (:background "dark cyan" :foreground "white"))))
  '(sp-show-pair-mismatch-face ((t (:background "dark red" :foreground "white")))))
