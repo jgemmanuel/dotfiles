@@ -11,10 +11,6 @@
 (require 'smooth-scrolling)
 (setq smooth-scroll-margin 5)
 
-;; Load Org-mode
-(add-to-list 'load-path "~/.emacs.d/org-8.2.5h/lisp")
-(add-to-list 'load-path "~/.emacs.d/org-8.2.5h/contrib/lisp" t)
-
 ;; Buffer names management (cf `custom-set-variables')
 (require 'uniquify)
 
@@ -65,6 +61,12 @@
 ;; shell-mode (fix regarding garbled characters)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
+<<<<<<< origin/dev
+=======
+;; LaTeX-mode
+(add-hook 'LaTeX-mode-hook '(flyspell-mode t))
+
+>>>>>>> local
 ;; Autolad Octave mode for *.m files
 (autoload 'octave-mode "octave-mod" nil t)
 (setq auto-mode-alist

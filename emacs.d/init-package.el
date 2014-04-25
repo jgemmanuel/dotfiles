@@ -2,6 +2,7 @@
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
 ;; Activate installed packages
 (package-initialize)
@@ -23,7 +24,7 @@ Return a list of installed packages or nil for every package not installed."
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 ;; Install missing packages
-(ensure-package-installed 'smartparens)
+(ensure-package-installed 'smartparens 'org-plus-contrib)
 
 ;; ;; Activate installed packages
 ;; (package-initialize)
