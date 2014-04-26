@@ -1,5 +1,5 @@
 ;; -*- mode: emacs-lisp -*-
-;; Simple init.el configuration
+;; Emacs configuration init.el
 
 ;; Hide menu, toolbar, and welcome message
 (menu-bar-mode -1)
@@ -109,6 +109,20 @@
 (global-set-key (kbd "S-<right>") 'windmove-right)
 (global-set-key (kbd "S-<up>") 'windmove-up)
 (global-set-key (kbd "S-<down>") 'windmove-down)
+
+;; Define escape sequences for accessibility on tty
+(define-key input-decode-map "\e[1;2A" [S-up])
+(define-key input-decode-map "\e[1;2B" [S-down])
+(define-key input-decode-map "\e[1;2C" [S-right])
+(define-key input-decode-map "\e[1;2D" [S-left])
+(define-key input-decode-map "\e[1;3A" [M-up])
+(define-key input-decode-map "\e[1;3B" [M-down])
+(define-key input-decode-map "\e[1;3C" [M-right])
+(define-key input-decode-map "\e[1;3D" [M-left])
+(define-key input-decode-map "\e[1;5A" [C-up])
+(define-key input-decode-map "\e[1;5B" [C-down])
+(define-key input-decode-map "\e[1;5C" [C-right])
+(define-key input-decode-map "\e[1;5D" [C-left])
 
 
 ;;;; Custom
