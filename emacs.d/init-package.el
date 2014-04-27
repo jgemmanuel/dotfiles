@@ -24,7 +24,7 @@ Return a list of installed packages or nil for every package not installed."
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 ;; Install missing packages
-(ensure-package-installed 'smartparens 'org-plus-contrib)
+(ensure-package-installed 'smartparens 'org-plus-contrib 'auctex)
 
 ;; ;; Activate installed packages
 ;; (package-initialize)

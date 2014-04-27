@@ -123,6 +123,10 @@
 (define-key input-decode-map "\e[1;5B" [C-down])
 (define-key input-decode-map "\e[1;5C" [C-right])
 (define-key input-decode-map "\e[1;5D" [C-left])
+(define-key input-decode-map "\e[1;4A" [S-M-up])
+(define-key input-decode-map "\e[1;4B" [S-M-down])
+(define-key input-decode-map "\e[1;4C" [S-M-right])
+(define-key input-decode-map "\e[1;4D" [S-M-left])
 
 
 ;;;; Custom
@@ -194,6 +198,7 @@
                  Expect: [\"{\\\\mathrm{E}\\\\Brac{#1}}\", 1],
                  pD: [\"{\\\\frac{\\\\partial #1}{\\\\partial #2}}\", 2],
                  coloneqq: \"{\\\\mathrel{\\\\vcenter{:}}=}\",
+                 vdotswithin: [\"{\\\\; \\\\vdots}\", 1],
                  intercal: \"{\\\\top}\",
                  bm: [\"{\\\\bf #1}\", 1]
              }
