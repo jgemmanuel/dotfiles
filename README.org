@@ -1,0 +1,37 @@
+* A Typical Installation Script
+
+#+BEGIN_SRC sh :exports code
+  EMACS=$HOME/.emacs.d
+  REPO=$HOME/repos
+
+  git clone https://github.com/mkota/dotfiles.git $REPO/dotfiles
+
+  ln -sf $REPO/dotfiles/bashrc_custom $HOME/.bashrc_custom
+  ln -sf $REPO/dotfiles/emacs.d $EMACS
+  ln -sf $REPO/dotfiles/screenrc $HOME/.screenrc
+  ln -sf $REPO/dotfiles/latexmkrc $HOME/.latexmkrc
+  ln -sf $REPO/dotfiles/octaverc $HOME/.octaverc
+
+  wget http://adamspiers.org/computing/elisp/smooth-scrolling.el -P $EMACS
+  wget https://raw.githubusercontent.com/winterTTr/ace-jump-mode/master/ace-jump-mode.el -P $EMACS
+  git clone https://github.com/brianc/jade-mode.git $EMACS/jade-mode
+
+  # Environment variables et al
+  cat<<EOF >> $HOME/.profile
+
+  ## Custom
+
+  export SUDO_EDITOR=/usr/bin/emacs
+  export LANG="en_GB.UTF-8"
+  export LANGUAGE="en_GB:en_US:en"
+  EOF
+  cat<<EOF >> $HOME/.bashrc
+
+  # Custom
+  if [ -f $HOME/.bashrc_custom ]; then
+      . $HOME/.bashrc_custom
+  fi
+  EOF
+  source $HOME/.profile
+  source $HOME/.bashrc
+#+END_SRC
