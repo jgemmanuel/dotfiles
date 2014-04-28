@@ -3,6 +3,7 @@
 #+BEGIN_SRC sh :exports code
   EMACS=$HOME/.emacs.d
   REPO=$HOME/repos
+  PROFILE=$HOME/.profile
 
   git clone https://github.com/mkota/dotfiles.git $REPO/dotfiles
 
@@ -17,7 +18,7 @@
   git clone https://github.com/brianc/jade-mode.git $EMACS/jade-mode
 
   # Environment variables et al
-  cat<<EOF >> $HOME/.profile
+  cat<<EOF >> $PROFILE
 
   ## Custom
 
@@ -32,6 +33,6 @@
       . $HOME/.bashrc_custom
   fi
   EOF
-  source $HOME/.profile
+  source $PROFILE
   source $HOME/.bashrc
 #+END_SRC
