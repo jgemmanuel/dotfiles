@@ -195,6 +195,7 @@
                  Brac: [\"{\\\\left[ #1\\\\right]}\", 1],
                  Brace: [\"{\\\\left\\\\{ #1\\\\right\\\\}}\", 1],
                  abs: [\"{\\\\left\\\\lvert #1\\\\right\\\\rvert}\", 1],
+                 norm: [\"{\\\\left\\\\lVert #1\\\\right\\\\rVert}\", 1],
                  Expect: [\"{\\\\mathrm{E}\\\\Brac{#1}}\", 1],
                  pD: [\"{\\\\frac{\\\\partial #1}{\\\\partial #2}}\", 2],
                  coloneqq: \"{\\\\mathrel{\\\\vcenter{:}}=}\",
