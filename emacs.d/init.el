@@ -2,20 +2,29 @@
 ;; Emacs configuration init.el
 
 ;; Hide menu, toolbar, and welcome message
-(menu-bar-mode -1)
 (tool-bar-mode -1)
+(menu-bar-mode -1)
 (setq inhibit-startup-screen t)
 
-;; Load smooth-scrolling
+;; Add user path
 (add-to-list 'load-path "~/.emacs.d")
+
+;; Load package management related content
+(load "~/.emacs.d/init-package")
+
+;; Load theme when running on X
+(when (display-graphic-p)
+  (load-theme 'solarized-dark t))
+
+;; Set font size
+(set-face-attribute 'default nil :height 120) ; 120 * 1/10pt = 12pt
+
+;; Load smooth-scrolling
 (require 'smooth-scrolling)
 ;; (setq smooth-scroll-margin 5)
 
 ;; Buffer names management (cf `custom-set-variables')
 (require 'uniquify)
-
-;; Load package management related content
-(load "~/.emacs.d/init-package")
 
 ;; Insert parentheses in pairs
 (load "~/.emacs.d/init-smartparens")

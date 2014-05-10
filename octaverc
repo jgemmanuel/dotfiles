@@ -1,1 +1,2 @@
+addpath("~/octave")
 addpath("~/repos/custom/octave")

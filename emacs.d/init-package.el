@@ -2,6 +2,8 @@
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
 ;; Activate installed packages
@@ -25,6 +27,16 @@ Return a list of installed packages or nil for every package not installed."
     (package-refresh-contents))
 ;; Install missing packages
 (ensure-package-installed 'smartparens 'org-plus-contrib 'auctex)
+;; (if (display-graphic-p)
+;;     (progn
+;;       ;; if graphic
+;;       (your)
+;;       (code))
+;;   ;; else (optional)
+;;   (your)
+;;   (code))
+(when (display-graphic-p)
+  (ensure-package-installed 'color-theme-solarized))
 
 ;; ;; Activate installed packages
 ;; (package-initialize)
