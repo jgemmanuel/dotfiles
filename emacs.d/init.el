@@ -19,26 +19,19 @@
 ;; Set font size
 (set-face-attribute 'default nil :height 120) ; 120 * 1/10pt = 12pt
 
-;; Load smooth-scrolling
-(require 'smooth-scrolling)
-;; (setq smooth-scroll-margin 5)
-
 ;; Buffer names management (cf `custom-set-variables')
 (require 'uniquify)
 
 ;; Insert parentheses in pairs
 (load "~/.emacs.d/init-smartparens")
-;; (electric-pair-mode 1)
 
-;; Load ace-jump-mode
+;; smooth-scrolling
+;; (setq smooth-scroll-margin 5)
+
+;; ace-jump-mode
 ;; "C-c SPC" --> ace-jump-word-mode
 ;; "C-u C-c SPC" --> ace-jump-char-mode
 ;; "C-u C-u C-c SPC" --> ace-jump-line-mode
-(autoload
-  'ace-jump-mode
-  "ace-jump-mode"
-  "Emacs quick move minor mode"
-  t)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; Set width of screen for the purpose of word-wrapping (enable `auto-fill-mode')
@@ -71,19 +64,12 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 ;; LaTeX-mode
-(add-hook 'LaTeX-mode-hook '(flyspell-mode t))
+(add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
 
 ;; Autolad Octave mode for *.m files
 (autoload 'octave-mode "octave-mod" nil t)
 (setq auto-mode-alist
       (cons '("\\.m$" . octave-mode) auto-mode-alist))
-
-;; Jade- and Stylus-modes
-(add-to-list 'load-path "~/.emacs.d/jade-mode")
-(require 'sws-mode)
-(require 'jade-mode)
-(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
-(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
 ;; Toggle window split (Only works for two windows within single frame)
 (defun toggle-window-split ()
@@ -204,6 +190,7 @@
                  Brac: [\"{\\\\left[ #1\\\\right]}\", 1],
                  Brace: [\"{\\\\left\\\\{ #1\\\\right\\\\}}\", 1],
                  abs: [\"{\\\\left\\\\lvert #1\\\\right\\\\rvert}\", 1],
+                 norm: [\"{\\\\left\\\\lVert #1\\\\right\\\\rVert}\", 1],
                  Expect: [\"{\\\\mathrm{E}\\\\Brac{#1}}\", 1],
                  pD: [\"{\\\\frac{\\\\partial #1}{\\\\partial #2}}\", 2],
                  coloneqq: \"{\\\\mathrel{\\\\vcenter{:}}=}\",

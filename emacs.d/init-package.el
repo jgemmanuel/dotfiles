@@ -26,7 +26,7 @@ Return a list of installed packages or nil for every package not installed."
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 ;; Install missing packages
-(ensure-package-installed 'smartparens 'org-plus-contrib 'auctex)
+(ensure-package-installed 'smartparens 'org-plus-contrib 'auctex 'jade-mode 'stylus-mode 'smooth-scrolling 'ace-jump-mode)
 ;; (if (display-graphic-p)
 ;;     (progn
 ;;       ;; if graphic
