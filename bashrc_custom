@@ -16,6 +16,7 @@ alias ll='ls -aXlhF'
 alias grep='grep -n --color=auto'
 alias mkdir='mkdir -p -v'
 alias treeacl='tree -A -C -L 2'
+alias em='emacs -nw'
 
 # Precautionary aliases
 alias rm='rm -iv'
@@ -29,6 +30,25 @@ alias sudo='sudo '
 
 # Random strings (defaults to eight character length)
 alias rstring="< /dev/urandom tr -dc A-Za-z0-9_%\$ | head -c8 && echo"
+
+# Data transferred up/down
+alias TX=GetTX
+alias RX=GetRX
+function GetRX() {
+    /usr/bin/awk 'FNR == 3 {print $2}' /proc/net/dev | numfmt --to=iec-i --suffix B;
+}
+function GetTX() {
+    /usr/bin/awk 'FNR == 3 {print $10}' /proc/net/dev | numfmt --to=iec-i --suffix B;
+}
+
+# Search some file `x' and print results in STDOUT
+# x = cli.org
+function relearn {
+    echo
+    head -5 $HOME/repos/cli/cli.org | tail -1
+    echo
+    grep -i -B2 -A2 $1 $HOME/repos/cli/cli.org
+}
 
 # Colored man pages using `less'
 man() {

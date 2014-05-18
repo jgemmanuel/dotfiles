@@ -61,7 +61,21 @@
        ;; as well as auto-fill-mode for every org buffer.
        (flyspell-mode 1)
        (auto-fill-mode 1))
-     (add-hook 'org-mode-hook 'my-org-mode-hook)))
+     (add-hook 'org-mode-hook 'my-org-mode-hook)
+
+     (defun custom-org-confirm-babel-evaluate (flag)
+       ;; Report the setting of org-confirm-babel-evaluate.
+       ;; If invoked with C-u, toggle the setting.
+       ;; Credit: @jcs (http://irreal.org/blog/?p=69)
+       (interactive "P")
+       (if (equal flag '(4))
+	   (setq org-confirm-babel-evaluate (not org-confirm-babel-evaluate)))
+       (message "Babel evaluation confirmation is %s"
+		(if org-confirm-babel-evaluate "on" "off")))))
+
+     ;; (defun custom-org-confirm-babel-evaluate (lang body)
+     ;;   (not (string= lang "R")))	; don't ask for R
+     ;; (setq org-confirm-babel-evaluate 'custom-org-confirm-babel-evaluate)))
 
 ;; ;; Org-mode source code execution
 (org-babel-do-load-languages 'org-babel-load-languages

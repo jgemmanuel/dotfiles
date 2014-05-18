@@ -25,6 +25,9 @@
 ;; Insert parentheses in pairs
 (load "~/.emacs.d/init-smartparens")
 
+;; Disable cursor blinking
+(blink-cursor-mode 0)
+
 ;; smooth-scrolling
 ;; (setq smooth-scroll-margin 5)
 
