@@ -38,7 +38,7 @@
 \\usepackage{microtype}
 \\usepackage{siunitx}
 \\usepackage{booktabs}
-\\usepackage[listings, mathtools, simpleheadings]{custom}
+\\usepackage[listings, mathtools, fixlayout]{custom}
 \\usepackage[british]{babel}
 \\usepackage{csquotes}
                     [NO-DEFAULT-PACKAGES]
