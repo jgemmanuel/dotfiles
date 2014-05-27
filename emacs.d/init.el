@@ -69,10 +69,13 @@
 ;; LaTeX-mode
 (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
 
-;; Autolad Octave mode for *.m files
+;; Autolad Octave mode for *.m files and change default comment character to `%'
 (autoload 'octave-mode "octave-mod" nil t)
+(define-derived-mode custom-octave-mode octave-mode "CustomOctaveMode"
+  "Comments start with `%'."
+  (set (make-local-variable 'comment-start) "%"))
 (setq auto-mode-alist
-      (cons '("\\.m$" . octave-mode) auto-mode-alist))
+      (cons '("\\.m$" . custom-octave-mode) auto-mode-alist))
 
 ;; Toggle window split (Only works for two windows within single frame)
 (defun toggle-window-split ()
@@ -196,7 +199,7 @@
                  norm: [\"{\\\\left\\\\lVert #1\\\\right\\\\rVert}\", 1],
                  Expect: [\"{\\\\mathrm{E}\\\\Brac{#1}}\", 1],
                  pD: [\"{\\\\frac{\\\\partial #1}{\\\\partial #2}}\", 2],
-                 coloneqq: \"{\\\\mathrel{\\\\vcenter{:}}=}\",
+                 coloneqq: \"{\\\\:\\\\mathrel{\\\\vcenter{:}}=\\\\:}\",
                  vdotswithin: [\"{\\\\; \\\\vdots}\", 1],
                  intercal: \"{\\\\top}\",
                  bm: [\"{\\\\bf #1}\", 1]
