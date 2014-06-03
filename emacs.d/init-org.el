@@ -21,7 +21,7 @@
 		    (closing-double-quote :utf-8 "”" :html "</q>" :latex "}" :texinfo "''")
 		    (opening-single-quote :utf-8 "‘" :html "<q>" :latex "\\textquote{" :texinfo "`")
 		    (closing-single-quote :utf-8 "’" :html "</q>" :latex "}" :texinfo "'")
-		    (apostrophe :utf-8 "’" :html "&rsquo;")))
+		    (apostrophe :utf-8 "’" :html "&rsquo;" :latex "'" :texinfo "'")))
 
      ;; Org-mode latex exports
      (setq org-latex-listings 'listings)
