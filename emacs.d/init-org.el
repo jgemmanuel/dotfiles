@@ -1,17 +1,12 @@
 ;;;; Org-mode
-;;; Acknowledgement: @Yoo (http://stackoverflow.com/q/2736087)
+;; Acknowledgements: @Yoo (http://stackoverflow.com/q/2736087)
 
 (eval-after-load "org"
   '(progn
-     ;; (define-key org-mode-map (kbd "C-c M-<right>") 'org-table-insert-column)
-     ;; (define-key org-mode-map (kbd "C-c M-<left>") 'org-table-delete-column)
-     ;; (define-key org-mode-map (kbd "C-c M-<down>") 'org-table-insert-row)
-     ;; (define-key org-mode-map (kbd "C-c M-<up>") 'org-table-kill-row)
-
      (require 'latex)
      (define-key org-mode-map (kbd "C-c C-t") 'LaTeX-environment)
 
-     ;; Org-mode smart quoting and exporting
+     ;; Smart quotes when exporting to html and latex
      ;; (require 'ox)
      (require 'ox-latex)
      (setq-default org-export-with-smart-quotes t)
@@ -23,7 +18,7 @@
 		    (closing-single-quote :utf-8 "’" :html "</q>" :latex "}" :texinfo "'")
 		    (apostrophe :utf-8 "’" :html "&rsquo;" :latex "'" :texinfo "'")))
 
-     ;; Org-mode latex exports
+     ;; LaTeX exports
      (setq org-latex-listings 'listings)
      (unless (boundp 'org-latex-classes)
        (setq org-latex-classes nil))
@@ -54,6 +49,10 @@
 		    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 		    ("\\paragraph{%s}" . "\\paragraph*{%s}")))
 
+     ;; HTML exports
+     (setq org-html-postamble t)
+     (setq org-html-postamble-format '(("en" "<p class=\"author\">Author: %a</p>\n<p>Last Updated: %T</p>")))
+
      (defun my-org-mode-hook ()
        ;; The following two lines of code is run from the mode hook.
        ;; These are for buffer-specific things.
@@ -77,12 +76,21 @@
      ;;   (not (string= lang "R")))	; don't ask for R
      ;; (setq org-confirm-babel-evaluate 'custom-org-confirm-babel-evaluate)))
 
-;; ;; Org-mode source code execution
+;; Source code execution
 (org-babel-do-load-languages 'org-babel-load-languages
 			     '((emacs-lisp . t)
+			       (ditaa . t)
+			       (latex . t)
 			       (R . t)
-			       (python . t)
 			       (octave . t)
-			       (latex . t)))
+			       (sh . t)
+			       (python . t)
+			       (org . t)))
 ;; Fontify source code blocks
 (setq org-src-fontify-natively t)
+
+;;;; Publish
+
+;; ;; Use a personal style sheet instead
+;; (setq org-html-head-include-default-style nil)
+;; (setq org-html-head-extra "<link rel=\"stylesheet\" href=\"stylesheets/main.css\" type=\"text/css\" />")

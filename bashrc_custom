@@ -15,7 +15,7 @@ alias ls='ls --color=auto'
 alias ll='ls -aXlhF'
 alias grep='grep -n --color=auto'
 alias mkdir='mkdir -p -v'
-alias treeacl='tree -A -C -L 2'
+alias treeacl='tree -a -A -C -L 2'
 alias em='emacs -nw'
 
 # Precautionary aliases
