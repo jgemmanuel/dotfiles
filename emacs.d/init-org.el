@@ -51,7 +51,20 @@
 
      ;; HTML exports
      (setq org-html-postamble t)
-     (setq org-html-postamble-format '(("en" "<p class=\"author\">Author: %a</p>\n<p>Last Updated: %T</p>")))
+     (setq org-html-postamble-format '(("en" "<p class=\"author\">Author: %a</p>\n<p>Last updated: %T</p>")))
+
+     ;; Source code execution langages
+     (org-babel-do-load-languages 'org-babel-load-languages
+				  '((emacs-lisp . t)
+				    (ditaa . t)
+				    (latex . t)
+				    (R . t)
+				    (octave . t)
+				    (sh . t)
+				    (python . t)
+				    (org . t)))
+     ;; Fontify source code blocks
+     (setq org-src-fontify-natively t)
 
      (defun my-org-mode-hook ()
        ;; The following two lines of code is run from the mode hook.
@@ -76,18 +89,18 @@
      ;;   (not (string= lang "R")))	; don't ask for R
      ;; (setq org-confirm-babel-evaluate 'custom-org-confirm-babel-evaluate)))
 
-;; Source code execution
-(org-babel-do-load-languages 'org-babel-load-languages
-			     '((emacs-lisp . t)
-			       (ditaa . t)
-			       (latex . t)
-			       (R . t)
-			       (octave . t)
-			       (sh . t)
-			       (python . t)
-			       (org . t)))
-;; Fontify source code blocks
-(setq org-src-fontify-natively t)
+;; ;; Source code execution
+;; (org-babel-do-load-languages 'org-babel-load-languages
+;; 			     '((emacs-lisp . t)
+;; 			       (ditaa . t)
+;; 			       (latex . t)
+;; 			       (R . t)
+;; 			       (octave . t)
+;; 			       (sh . t)
+;; 			       (python . t)
+;; 			       (org . t)))
+;; ;; Fontify source code blocks
+;; (setq org-src-fontify-natively t)
 
 ;;;; Publish
 
