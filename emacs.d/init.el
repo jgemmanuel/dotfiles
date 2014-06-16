@@ -77,6 +77,9 @@
 (setq auto-mode-alist
       (cons '("\\.m$" . custom-octave-mode) auto-mode-alist))
 
+;; jade-mode
+(add-hook 'jade-mode-hook 'turn-on-flyspell)
+
 ;; Toggle window split (Only works for two windows within single frame)
 (defun toggle-window-split ()
   (interactive)
@@ -110,6 +113,12 @@
 (global-set-key (kbd "S-<right>") 'windmove-right)
 (global-set-key (kbd "S-<up>") 'windmove-up)
 (global-set-key (kbd "S-<down>") 'windmove-down)
+
+;; buffer-move keybinds
+(global-set-key (kbd "<C-S-up>")     'buf-move-up)
+(global-set-key (kbd "<C-S-down>")   'buf-move-down)
+(global-set-key (kbd "<C-S-left>")   'buf-move-left)
+(global-set-key (kbd "<C-S-right>")  'buf-move-right)
 
 ;; Define escape sequences for accessibility on tty
 (define-key input-decode-map "\e[1;2A" [S-up])
