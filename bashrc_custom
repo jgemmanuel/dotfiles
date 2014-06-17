@@ -43,11 +43,12 @@ function GetTX() {
 
 # Search some file `x' and print results in STDOUT
 # x = cli.org
-function relearn {
+function revisit {
+    local FILE=$HOME/repos/cli/cli.org
     echo
-    head -5 $HOME/repos/cli/cli.org | tail -1
+    head -5 $FILE | tail -1
     echo
-    grep -i -B2 -A2 $1 $HOME/repos/cli/cli.org
+    grep -i -B2 -A2 $1 $FILE
 }
 
 # Colored man pages using `less'
