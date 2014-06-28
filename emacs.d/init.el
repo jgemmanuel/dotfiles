@@ -139,6 +139,7 @@
 (define-key input-decode-map "\e[1;4D" [S-M-left])
 
 
+
 ;;;; Custom
 
 (custom-set-variables
@@ -229,8 +230,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(flyspell-duplicate ((t (:underline "#b58900"))))
- '(flyspell-incorrect ((t (:foreground "#dc322f" :underline t :weight normal))))
+ '(flyspell-duplicate ((t (:underline "#b58900"))) t)
+ '(flyspell-incorrect ((t (:foreground "#dc322f" :underline t :weight normal))) t)
  '(font-latex-italic-face ((t (:foreground "blue violet"))))
  '(font-latex-math-face ((t (:foreground "DeepSkyBlue3"))))
  '(font-latex-sectioning-0-face ((t (:inherit font-latex-sectioning-1-face))))

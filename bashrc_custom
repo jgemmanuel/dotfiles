@@ -13,7 +13,8 @@ fi
 # General aliases
 alias ls='ls --color=auto'
 alias ll='ls -aXlhF'
-alias grep='grep -n --color=auto'
+# alias grep='grep -n --color=auto'
+alias grep='grep --color=auto'
 alias mkdir='mkdir -p -v'
 alias treeacl='tree -a -A -C -L 2'
 alias em='emacs -nw'
@@ -48,7 +49,7 @@ function revisit {
     echo
     head -5 $FILE | tail -1
     echo
-    grep -i -B2 -A2 $1 $FILE
+    grep -n -i -B2 -A2 $1 $FILE
 }
 
 # Colored man pages using `less'

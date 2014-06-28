@@ -7,13 +7,13 @@
 
 ;; Markdown-mode
 (sp-with-modes '(markdown-mode gfm-mode rst-mode)
-	         (sp-local-pair "*" "*" :bind "C-*")
-		   (sp-local-tag "2" "**" "**")
-		     (sp-local-pair "`" "`"))
+  (sp-local-pair "*" "*" :bind "C-*")
+  (sp-local-tag "2" "**" "**")
+  (sp-local-pair "`" "`"))
 
-;; Org-mode
+;; Org- and LaTeX-mode
 (sp-with-modes '(org-mode LaTeX-mode)
-	         (sp-local-pair "$" "$"))
+  (sp-local-pair "$" "$"))
 
 ;; Keybindings
 (define-key sp-keymap (kbd "C-` <right>") 'sp-forward-sexp)
