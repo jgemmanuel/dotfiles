@@ -66,8 +66,12 @@
 ;; shell-mode (fix regarding garbled characters)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
-;; LaTeX-mode
+;; fly-spell-mode
 (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
+(add-hook 'jade-mode-hook 'turn-on-flyspell)
+
+;; Ask for y/n keypress instead of typing out `yes' or `no'
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Autolad Octave mode for *.m files and change default comment character to `%'
 (autoload 'octave-mode "octave-mod" nil t)
@@ -76,9 +80,6 @@
   (set (make-local-variable 'comment-start) "%"))
 (setq auto-mode-alist
       (cons '("\\.m$" . custom-octave-mode) auto-mode-alist))
-
-;; jade-mode
-(add-hook 'jade-mode-hook 'turn-on-flyspell)
 
 ;; Toggle window split (Only works for two windows within single frame)
 (defun toggle-window-split ()
