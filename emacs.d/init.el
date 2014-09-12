@@ -31,6 +31,10 @@
 ;; smooth-scrolling
 ;; (setq smooth-scroll-margin 5)
 
+;; js-mode
+(setq js-indent-level 2)
+(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+
 ;; ace-jump-mode
 ;; "C-c SPC" --> ace-jump-word-mode
 ;; "C-u C-c SPC" --> ace-jump-char-mode
@@ -231,8 +235,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(flyspell-duplicate ((t (:underline "#b58900"))) t)
- '(flyspell-incorrect ((t (:foreground "#dc322f" :underline t :weight normal))) t)
+ '(flyspell-duplicate ((t (:underline "#b58900"))))
+ '(flyspell-incorrect ((t (:foreground "#dc322f" :underline t :weight normal))))
  '(font-latex-italic-face ((t (:foreground "blue violet"))))
  '(font-latex-math-face ((t (:foreground "DeepSkyBlue3"))))
  '(font-latex-sectioning-0-face ((t (:inherit font-latex-sectioning-1-face))))
@@ -251,7 +255,7 @@
  '(font-lock-keyword-face ((t (:foreground "cyan3" :inverse-video nil :underline nil :slant normal :weight normal))))
  '(font-lock-string-face ((t (:foreground "color-34"))))
  '(font-lock-type-face ((t (:foreground "maroon" :inverse-video nil :underline nil :slant normal :weight normal))))
- '(font-lock-variable-name-face ((t (:foreground "blue"))))
+ '(font-lock-variable-name-face ((t (:foreground "dodger blue" :inverse-video nil :underline nil :slant normal :weight normal))))
  '(org-latex-and-related ((t (:foreground "color-59"))))
  '(sp-pair-overlay-face ((t (:background "brightblack" :foreground "white"))))
  '(sp-show-pair-enclosing ((t (:background "brightblack" :foreground "white"))))

@@ -1,0 +1,14 @@
+[user]
+	name = mkota
+	email = jg.emmanuel@outlook.com
+	username = mkota
+[push]
+	default = simple
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	st = status -sb
+	ac = !git add -A && git commit
+[color]
+	ui = 1
+[help]
+	autocorrect = 1

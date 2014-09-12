@@ -27,13 +27,13 @@ Return a list of installed packages or nil for every package not installed."
     (package-refresh-contents))
 ;; Install missing packages
 (ensure-package-installed 'smartparens
+			  'smooth-scrolling
+			  'ace-jump-mode
+			  'buffer-move
 			  'org-plus-contrib
 			  'auctex
 			  'jade-mode
-			  'stylus-mode
-			  'smooth-scrolling
-			  'ace-jump-mode
-			  'buffer-move)
+			  'stylus-mode)
 ;; (if (display-graphic-p)
 ;;     (progn
 ;;       ;; if graphic
@@ -47,3 +47,6 @@ Return a list of installed packages or nil for every package not installed."
 
 ;; ;; Activate installed packages
 ;; (package-initialize)
+
+;; Edit server
+(edit-server-start)

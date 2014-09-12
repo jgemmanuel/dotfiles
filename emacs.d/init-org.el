@@ -51,7 +51,8 @@
 
      ;; HTML exports
      (setq org-html-postamble t)
-     (setq org-html-postamble-format '(("en" "<p class=\"author\">Author: %a</p>\n<p>Last updated: %T</p>")))
+     (setq org-html-postamble-format '(("en" "<p class=\"author\">Author: <a href=\"/contact\" target=\"_blank\">%a</a></p>\n
+                                              <p>Last updated: %T</p>")))
 
      ;; Source code execution langages
      (org-babel-do-load-languages 'org-babel-load-languages
