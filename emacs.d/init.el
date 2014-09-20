@@ -31,6 +31,11 @@
 ;; smooth-scrolling
 ;; (setq smooth-scroll-margin 5)
 
+;; Set TeX input method as default (C-\ to toggle)
+;; Also try C-x 8 C-h
+;; Credit: @MarcinBorkowski (http://mbork.pl/2014-09-13_TeX_input_method)
+(setq default-input-method "TeX")
+
 ;; js-mode
 (setq js-indent-level 2)
 (add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
@@ -69,6 +74,9 @@
 (load "~/.emacs.d/init-org")
 ;; shell-mode (fix regarding garbled characters)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+;; Inserting templates
+(load "~/.emacs.d/init-templates")
 
 ;; fly-spell-mode
 (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
