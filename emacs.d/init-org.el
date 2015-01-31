@@ -20,20 +20,21 @@
 
      ;; LaTeX exports
      (setq org-latex-listings 'listings)
+     (setq org-latex-tables-booktabs t)	; Enable booktabs globally
      (unless (boundp 'org-latex-classes)
        (setq org-latex-classes nil))
      (add-to-list 'org-latex-classes
-		  '("book"
+		  '("custombook"
 		    "\\RequirePackage[l2tabu, orthodox]{nag}
 \\documentclass{book}
 \\usepackage[a4paper]{geometry}
 \\usepackage{graphicx}
-\\usepackage{mathptmx, tgtermes}
+\\usepackage{mathptmx,tgtermes}
 \\usepackage[T1]{fontenc}
 \\usepackage{microtype}
 \\usepackage{siunitx}
 \\usepackage{booktabs}
-\\usepackage[listings, mathtools, fixlayout]{custom}
+\\usepackage[listings,mathtools,fixlayout]{custom}
 \\usepackage[british]{babel}
 \\usepackage{csquotes}
                     [NO-DEFAULT-PACKAGES]
@@ -44,6 +45,57 @@
 \\usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
 \\usepackage{cleveref}"
 		    ("\\chapter{%s}" . "\\chapter*{%s}")
+		    ("\\section{%s}" . "\\section*{%s}")
+		    ("\\subsection{%s}" . "\\subsection*{%s}")
+		    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		    ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+     (add-to-list 'org-latex-classes
+		  '("customreport"
+		    "\\RequirePackage[l2tabu, orthodox]{nag}
+\\documentclass{report}
+\\usepackage[a4paper]{geometry}
+\\usepackage{graphicx}
+\\usepackage{mathptmx,tgtermes}
+\\usepackage[T1]{fontenc}
+\\usepackage{microtype}
+\\usepackage{siunitx}
+\\usepackage{booktabs}
+\\usepackage[listings,mathtools,fixlayout]{custom}
+\\usepackage[british]{babel}
+\\usepackage{csquotes}
+                    [NO-DEFAULT-PACKAGES]
+                    [PACKAGES]
+
+		    [EXTRA]
+
+\\usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
+\\usepackage{cleveref}"
+		    ("\\chapter{%s}" . "\\chapter*{%s}")
+		    ("\\section{%s}" . "\\section*{%s}")
+		    ("\\subsection{%s}" . "\\subsection*{%s}")
+		    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+		    ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+     (add-to-list 'org-latex-classes
+		  '("customarticle"
+		    "\\RequirePackage[l2tabu, orthodox]{nag}
+\\documentclass{article}
+\\usepackage[a4paper]{geometry}
+\\usepackage{graphicx}
+\\usepackage{mathptmx,tgtermes}
+\\usepackage[T1]{fontenc}
+\\usepackage{microtype}
+\\usepackage{siunitx}
+\\usepackage{booktabs}
+\\usepackage[listings,mathtools,fixlayout]{custom}
+\\usepackage[british]{babel}
+\\usepackage{csquotes}
+                    [NO-DEFAULT-PACKAGES]
+                    [PACKAGES]
+
+		    [EXTRA]
+
+\\usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
+\\usepackage{cleveref}"
 		    ("\\section{%s}" . "\\section*{%s}")
 		    ("\\subsection{%s}" . "\\subsection*{%s}")
 		    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
