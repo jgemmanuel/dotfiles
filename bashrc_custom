@@ -18,6 +18,7 @@ alias grep='grep --color=auto'
 alias mkdir='mkdir -p -v'
 alias treeacl='tree -a -A -C -L 2'
 alias em='emacs -nw'
+alias ppt2pdf='libreoffice --headless --invisible --convert-to pdf'
 
 # Precautionary aliases
 alias rm='rm -iv'
