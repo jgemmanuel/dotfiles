@@ -1,35 +1,14 @@
 ;; -*- mode: emacs-lisp -*-
 ;; Emacs configuration init.el
 
-;; Hide menu, toolbar, and welcome message
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(setq inhibit-startup-screen t)
-
 ;; Add user path
 (add-to-list 'load-path "~/.emacs.d")
 
-;; Load package management related content
-(load "~/.emacs.d/init-package")
-
-;; Load theme when running on X
-(when (display-graphic-p)
-  (load-theme 'solarized-dark t))
-
-;; Set font size
-(set-face-attribute 'default nil :height 120) ; 120 * 1/10pt = 12pt
-
-;; Buffer names management (cf `custom-set-variables')
-(require 'uniquify)
-
-;; Insert parentheses in pairs
-(load "~/.emacs.d/init-smartparens")
-
-;; Disable cursor blinking
-(blink-cursor-mode 0)
-
-;; smooth-scrolling
-;; (setq smooth-scroll-margin 5)
+(load "~/.emacs.d/init-package")	; package management
+(load "~/.emacs.d/init-display")	; frame appearance settings
+(load "~/.emacs.d/init-smartparens")	; smartparens settings
+(load "~/.emacs.d/init-org")		; org-mode settings
+(load "~/.emacs.d/init-templates")	; inserting templates
 
 ;; Set TeX input method as default (C-\ to toggle)
 ;; Also try C-x 8 C-h
@@ -70,13 +49,8 @@
 ;; Toggle `linum-mode' (cf `custom-set-variables')
 (global-set-key (kbd "<f7>") 'linum-mode)
 
-;; org-mode
-(load "~/.emacs.d/init-org")
 ;; shell-mode (fix regarding garbled characters)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
-;; Inserting templates
-(load "~/.emacs.d/init-templates")
 
 ;; fly-spell-mode
 (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
@@ -163,6 +137,7 @@
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(ispell-highlight-face (quote flyspell-incorrect))
  '(linum-format (quote "%3d"))
+ '(org-agenda-files nil)
  '(org-calc-default-modes (quote (calc-internal-prec 20 calc-float-format (float 8) calc-angle-mode rad calc-prefer-frac nil calc-symbolic-mode nil calc-date-format (YYYY "-" MM "-" DD " " Www (" " hh ":" mm)) calc-display-working-message t)))
  '(org-completion-use-ido t)
  '(org-highlight-latex-and-related (quote (latex)))

@@ -3,11 +3,11 @@
 
 (eval-after-load "org"
   '(progn
+     ;; define a global key for latex environments
      (require 'latex)
      (define-key org-mode-map (kbd "C-c C-t") 'LaTeX-environment)
 
-     ;; Smart quotes when exporting to html and latex
-     ;; (require 'ox)
+     ;; use smart quotes when exporting to HTML and LaTeX
      (require 'ox-latex)
      (setq-default org-export-with-smart-quotes t)
      (add-to-list 'org-export-smart-quotes-alist
@@ -19,8 +19,10 @@
 		    (apostrophe :utf-8 "’" :html "&rsquo;" :latex "'" :texinfo "'")))
 
      ;; LaTeX exports
+
      (setq org-latex-listings 'listings)
-     (setq org-latex-tables-booktabs t)	; Enable booktabs globally
+     (setq org-latex-tables-booktabs t)	; enable booktabs globally
+     ;; define custom classes
      (unless (boundp 'org-latex-classes)
        (setq org-latex-classes nil))
      (add-to-list 'org-latex-classes
@@ -102,9 +104,18 @@
 		    ("\\paragraph{%s}" . "\\paragraph*{%s}")))
 
      ;; HTML exports
+
+     ;; define the format of the postamble
      (setq org-html-postamble t)
      (setq org-html-postamble-format '(("en" "<p class=\"author\">Author: <a href=\"/contact\" target=\"_blank\">%a</a></p>\n
                                               <p>Last updated: %T</p>")))
+
+     ;; Capture
+
+     ;; set a default target file for notes
+     (setq org-default-notes-file (concat org-directory "~/repos/notes/capture.org"))
+     ;; define a global key for capturing new material
+     (define-key global-map "\C-cc" 'org-capture)
 
      ;; Source code execution langages
      (org-babel-do-load-languages 'org-babel-load-languages
@@ -116,7 +127,7 @@
 				    (sh . t)
 				    (python . t)
 				    (org . t)))
-     ;; Fontify source code blocks
+     ;; fontify source code blocks
      (setq org-src-fontify-natively t)
 
      (defun my-org-mode-hook ()
@@ -131,7 +142,7 @@
      (defun custom-org-confirm-babel-evaluate (flag)
        ;; Report the setting of org-confirm-babel-evaluate.
        ;; If invoked with C-u, toggle the setting.
-       ;; Credit: @jcs (http://irreal.org/blog/?p=69)
+       ;; Credits: @jcs (http://irreal.org/blog/?p=69)
        (interactive "P")
        (if (equal flag '(4))
 	   (setq org-confirm-babel-evaluate (not org-confirm-babel-evaluate)))
