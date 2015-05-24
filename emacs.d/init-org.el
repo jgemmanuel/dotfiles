@@ -113,7 +113,7 @@
      ;; Capture
 
      ;; set a default target file for notes
-     (setq org-default-notes-file (concat org-directory "~/repos/notes/capture.org"))
+     (setq org-default-notes-file (expand-file-name "~/repos/notes/capture.org"))
      ;; define a global key for capturing new material
      (define-key global-map "\C-cc" 'org-capture)
 

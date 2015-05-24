@@ -4,11 +4,11 @@
 ;; Add user path
 (add-to-list 'load-path "~/.emacs.d")
 
-(load "~/.emacs.d/init-package")	; package management
-(load "~/.emacs.d/init-display")	; frame appearance settings
-(load "~/.emacs.d/init-smartparens")	; smartparens settings
-(load "~/.emacs.d/init-org")		; org-mode settings
-(load "~/.emacs.d/init-templates")	; inserting templates
+(load "init-package")			; package management
+(load "init-display")			; frame appearance settings
+(load "init-smartparens")		; smartparens settings
+(load "init-org")			; org-mode settings
+(load "init-templates")			; inserting templates
 
 ;; Set TeX input method as default (C-\ to toggle)
 ;; Also try C-x 8 C-h
