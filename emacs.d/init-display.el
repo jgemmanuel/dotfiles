@@ -10,6 +10,10 @@
   (set-frame-parameter nil 'background-mode 'dark)
   (enable-theme 'solarized))
 
+;; Powerline
+(require 'powerline)
+(powerline-default-theme)
+
 ;; Set font size
 (set-face-attribute 'default nil :height 120) ; 120 * 1/10pt = 12pt
 
@@ -19,5 +23,5 @@
 ;; Disable cursor blinking
 (blink-cursor-mode 0)
 
-;; smooth-scrolling
+;; Smooth scrolling
 ;; (setq smooth-scroll-margin 5)

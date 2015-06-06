@@ -26,10 +26,11 @@ Return a list of installed packages or nil for every package not installed."
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 ;; Install missing packages
-(ensure-package-installed 'smartparens
+(ensure-package-installed 'powerline
 			  'smooth-scrolling
-			  'ace-jump-mode
 			  'buffer-move
+			  'ace-jump-mode
+			  'smartparens
 			  'org-plus-contrib
 			  'auctex
 			  'jade-mode
