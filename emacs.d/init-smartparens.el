@@ -14,6 +14,7 @@
 ;; Org- and LaTeX-mode
 (sp-with-modes '(org-mode LaTeX-mode)
   (sp-local-pair "$" "$"))
+(sp-with-modes 'org-mode (sp-local-pair "=" "="))
 
 ;; Keybindings
 (define-key sp-keymap (kbd "C-` <right>") 'sp-forward-sexp)
