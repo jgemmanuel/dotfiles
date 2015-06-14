@@ -4,16 +4,16 @@
 (menu-bar-mode -1)
 (setq inhibit-startup-screen t)
 
-;; Load theme when running on X
+;; Load theme only when running on X
 (when (display-graphic-p)
+  ;; Solarized theme
   (load-theme 'solarized t)
-  ;; Solarized dark
+  ;; Use the dark version of the theme
   (set-frame-parameter nil 'background-mode 'dark)
-  (enable-theme 'solarized))
-
-;; Powerline
-(require 'powerline)
-(powerline-default-theme)
+  (enable-theme 'solarized)
+  ;; Powerline
+  (require 'powerline)
+  (powerline-default-theme))
 
 ;; Set font size
 (set-face-attribute 'default nil :height 120) ; 120 * 1/10pt = 12pt
