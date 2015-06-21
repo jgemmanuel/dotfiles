@@ -2,7 +2,7 @@
 ;; Emacs configuration init.el
 
 ;; Add user path
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/init")
 
 (load "init-package")			; package management
 (load "init-display")			; frame appearance settings
