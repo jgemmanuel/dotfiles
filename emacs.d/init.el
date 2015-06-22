@@ -10,6 +10,23 @@
 (load "init-org")			; org-mode settings
 (load "init-templates")			; inserting templates
 
+;; Configure yasnippet and auto-complete
+;; Credit: https://truongtx.me/2013/01/06/config-yasnippet-and-autocomplete-on-emacs/
+;; Note: auto complete mod should be loaded after yasnippet so that they can
+;; work together
+(yas-global-mode 1)
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+;;; set the trigger key so that it can work together with yasnippet on tab key,
+;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
+;;; activate, otherwise, auto-complete will
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
+
+;; (WIP)
+;; Globally enable flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; Set TeX input method as default (C-\ to toggle)
 ;; Also try C-x 8 C-h
 ;; Credit: @MarcinBorkowski (http://mbork.pl/2014-09-13_TeX_input_method)
@@ -18,6 +35,8 @@
 ;; js-mode
 (setq js-indent-level 2)
 (add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
 
 ;; ace-jump-mode
 ;; "C-c SPC" --> ace-jump-word-mode
