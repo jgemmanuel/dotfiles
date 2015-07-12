@@ -51,6 +51,10 @@ alias treeacl='tree -a -A -C -L 2'
 alias em='emacs -nw'
 alias ppt2pdf='libreoffice --headless --invisible --convert-to pdf'
 
+# Search
+alias findfiles='find . -type f -not -path ".git/*" -print0'
+alias grepfiles='findfiles | xargs -0 grep --color=auto'
+
 # Enable `alias'es to be run by `sudo'
 # > man bash
 #   ... If the last character of the alias value is a blank, then the next command word following the alias is also checked for alias expansion.

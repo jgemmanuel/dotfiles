@@ -23,10 +23,6 @@
 (ac-set-trigger-key "TAB")
 (ac-set-trigger-key "<tab>")
 
-;; (WIP)
-;; Globally enable flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
 ;; Set TeX input method as default (C-\ to toggle)
 ;; Also try C-x 8 C-h
 ;; Credit: @MarcinBorkowski (http://mbork.pl/2014-09-13_TeX_input_method)
@@ -47,7 +43,7 @@
 ;; Set width of screen for the purpose of word-wrapping (enable `auto-fill-mode')
 (setq-default fill-column 78)
 
-;; Auto indentation (Not supported by some modes, eg f90-mode)
+;; Auto indentation (Not supported by some modes, e.g. f90-mode)
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Kill the newline between indented lines and remove extra spaces caused by indentation
@@ -64,6 +60,23 @@
 
 ;; Delete trailing whitespace in buffer upon save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Java-mode untabify the buffer upon save
+;; Credit: @ian eure (http://stackoverflow.com/a/322690)
+(defun untabify-buffer ()
+  "Untabify current buffer"
+  (interactive)
+  (untabify (point-min) (point-max)))
+(defun progmodes-hooks ()
+  "Hooks for programming modes"
+  ;; (yas/minor-mode-on)
+  (add-hook 'before-save-hook 'progmodes-write-hooks))
+(defun progmodes-write-hooks ()
+  "Hooks which run on file write for programming modes"
+  (prog1 nil
+    (set-buffer-file-coding-system 'utf-8-unix)
+    (untabify-buffer)))
+(add-hook 'java-mode-hook 'progmodes-hooks)
 
 ;; Toggle `linum-mode' (cf `custom-set-variables')
 (global-set-key (kbd "<f7>") 'linum-mode)
