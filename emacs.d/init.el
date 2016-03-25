@@ -1,7 +1,14 @@
 ;; -*- mode: emacs-lisp -*-
 ;; Emacs configuration init.el
 
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 ;; Add user path
+
 (add-to-list 'load-path "~/.emacs.d/init")
 
 (load "init-package")			; package management
@@ -166,14 +173,25 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(ansi-color-names-vector
+   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(ispell-highlight-face (quote flyspell-incorrect))
  '(linum-format (quote "%3d"))
  '(org-agenda-files nil)
- '(org-calc-default-modes (quote (calc-internal-prec 20 calc-float-format (float 8) calc-angle-mode rad calc-prefer-frac nil calc-symbolic-mode nil calc-date-format (YYYY "-" MM "-" DD " " Www (" " hh ":" mm)) calc-display-working-message t)))
+ '(org-calc-default-modes
+   (quote
+    (calc-internal-prec 20 calc-float-format
+			(float 8)
+			calc-angle-mode rad calc-prefer-frac nil calc-symbolic-mode nil calc-date-format
+			(YYYY "-" MM "-" DD " " Www
+			      (" " hh ":" mm))
+			calc-display-working-message t)))
  '(org-completion-use-ido t)
  '(org-highlight-latex-and-related (quote (latex)))
  '(org-latex-default-class "book")
+ '(package-selected-packages
+   (quote
+    (ess htmlize web-mode powerline color-theme-solarized ac-octave ac-math ac-html-csswatcher ac-html-bootstrap ac-html ac-js2 ac-ispell auto-complete yasnippet stylus-mode jade-mode auctex kanban smooth-scrolling smartparens edit-server buffer-move ace-jump-mode)))
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
 (custom-set-faces

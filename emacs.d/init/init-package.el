@@ -32,7 +32,7 @@ Return a list of installed packages or nil for every package not installed."
 			  'ace-jump-mode
 			  'smartparens
 			  'org-plus-contrib
-			  'kanban
+			  'htmlize
 			  'auctex
 			  'jade-mode
 			  'stylus-mode
@@ -58,7 +58,7 @@ Return a list of installed packages or nil for every package not installed."
 			    'powerline))
 
 ;; ;; Activate installed packages
-;; (package-initialize)
+(package-initialize)
 
 ;; Edit server
 (edit-server-start)
