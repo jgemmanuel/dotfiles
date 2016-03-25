@@ -1,4 +1,4 @@
-;; Enable globally
+;; Enable the mode globally
 (smartparens-global-mode t)
 
 ;; Highlights matching pairs
@@ -7,13 +7,14 @@
 
 ;; Markdown-mode
 (sp-with-modes '(markdown-mode gfm-mode rst-mode)
-	         (sp-local-pair "*" "*" :bind "C-*")
-		   (sp-local-tag "2" "**" "**")
-		     (sp-local-pair "`" "`"))
+  (sp-local-pair "*" "*" :bind "C-*")
+  (sp-local-tag "2" "**" "**")
+  (sp-local-pair "`" "`"))
 
-;; Org-mode
+;; Org- and LaTeX-mode
 (sp-with-modes '(org-mode LaTeX-mode)
-	         (sp-local-pair "$" "$"))
+  (sp-local-pair "$" "$"))
+(sp-with-modes 'org-mode (sp-local-pair "=" "="))
 
 ;; Keybindings
 (define-key sp-keymap (kbd "C-` <right>") 'sp-forward-sexp)
@@ -104,3 +105,17 @@
 
 ;; sp-select-next-thing-exchange (&optional arg)       ;; C-]
 ;; sp-select-previous-thing-exchange (&optional arg)   ;; C-- C-]
+
+;; Indentation after braces for certain modes
+;; Credit: @wasamasa (http://emacs.stackexchange.com/a/3015)
+(sp-local-pair 'c++-mode "{" nil :post-handlers '((custom-create-newline-and-enter-sexp "RET")))
+(sp-local-pair 'sh-mode "{" nil :post-handlers '((custom-create-newline-and-enter-sexp "RET")))
+(sp-local-pair 'java-mode "{" nil :post-handlers '((custom-create-newline-and-enter-sexp "RET")))
+(sp-local-pair 'js-mode "{" nil :post-handlers '((custom-create-newline-and-enter-sexp "RET")))
+(sp-local-pair 'latex-mode "{" nil :post-handlers '((custom-create-newline-and-enter-sexp "RET")))
+(defun custom-create-newline-and-enter-sexp (&rest _ignored)
+  "Open a new brace or bracket expression, with relevant newlines and indent. "
+  (newline)
+  (indent-according-to-mode)
+  (forward-line -1)
+  (indent-according-to-mode))

@@ -1,1 +1,4 @@
+pkg load all;
+graphics_toolkit("fltk");
+addpath("~/octave")
 addpath("~/repos/custom/octave")

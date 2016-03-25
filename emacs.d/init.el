@@ -1,45 +1,56 @@
 ;; -*- mode: emacs-lisp -*-
-;; Simple init.el configuration
+;; Emacs configuration init.el
 
-;; Hide menu, toolbar, and welcome message
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(setq inhibit-startup-screen t)
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
 
-;; Load smooth-scrolling
-(add-to-list 'load-path "~/.emacs.d")
-(require 'smooth-scrolling)
-;; (setq smooth-scroll-margin 5)
+;; Add user path
 
-;; Load Org-mode
-(add-to-list 'load-path "~/.emacs.d/org-8.2.5h/lisp")
-(add-to-list 'load-path "~/.emacs.d/org-8.2.5h/contrib/lisp" t)
+(add-to-list 'load-path "~/.emacs.d/init")
 
-;; Buffer names management (cf `custom-set-variables')
-(require 'uniquify)
+(load "init-package")			; package management
+(load "init-display")			; frame appearance settings
+(load "init-smartparens")		; smartparens settings
+(load "init-org")			; org-mode settings
+(load "init-templates")			; inserting templates
 
-;; Load package management related content
-(load "~/.emacs.d/init-package")
+;; Configure yasnippet and auto-complete
+;; Credit: https://truongtx.me/2013/01/06/config-yasnippet-and-autocomplete-on-emacs/
+;; Note: auto complete mod should be loaded after yasnippet so that they can
+;; work together
+(yas-global-mode 1)
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+;;; set the trigger key so that it can work together with yasnippet on tab key,
+;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
+;;; activate, otherwise, auto-complete will
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
 
-;; Insert parentheses in pairs
-(load "~/.emacs.d/init-smartparens")
-;; (electric-pair-mode 1)
+;; Set TeX input method as default (C-\ to toggle)
+;; Also try C-x 8 C-h
+;; Credit: @MarcinBorkowski (http://mbork.pl/2014-09-13_TeX_input_method)
+(setq default-input-method "TeX")
 
-;; Load ace-jump-mode
+;; js-mode
+(setq js-indent-level 2)
+(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+
+;; ace-jump-mode
 ;; "C-c SPC" --> ace-jump-word-mode
 ;; "C-u C-c SPC" --> ace-jump-char-mode
 ;; "C-u C-u C-c SPC" --> ace-jump-line-mode
-(autoload
-  'ace-jump-mode
-  "ace-jump-mode"
-  "Emacs quick move minor mode"
-  t)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 ;; Set width of screen for the purpose of word-wrapping (enable `auto-fill-mode')
 (setq-default fill-column 78)
 
-;; Auto indentation (Not supported by some modes, eg f90-mode)
+;; Auto indentation (Not supported by some modes, e.g. f90-mode)
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Kill the newline between indented lines and remove extra spaces caused by indentation
@@ -57,28 +68,43 @@
 ;; Delete trailing whitespace in buffer upon save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Java-mode untabify the buffer upon save
+;; Credit: @ian eure (http://stackoverflow.com/a/322690)
+(defun untabify-buffer ()
+  "Untabify current buffer"
+  (interactive)
+  (untabify (point-min) (point-max)))
+(defun progmodes-hooks ()
+  "Hooks for programming modes"
+  ;; (yas/minor-mode-on)
+  (add-hook 'before-save-hook 'progmodes-write-hooks))
+(defun progmodes-write-hooks ()
+  "Hooks which run on file write for programming modes"
+  (prog1 nil
+    (set-buffer-file-coding-system 'utf-8-unix)
+    (untabify-buffer)))
+(add-hook 'java-mode-hook 'progmodes-hooks)
+
 ;; Toggle `linum-mode' (cf `custom-set-variables')
 (global-set-key (kbd "<f7>") 'linum-mode)
 
-;; org-mode
-(load "~/.emacs.d/init-org")
 ;; shell-mode (fix regarding garbled characters)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
-;; flyspell-mode
-(add-hook 'LaTeX-mode-hook '(flyspell-mode t))
+;; fly-spell-mode
+(add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
+(add-hook 'jade-mode-hook 'turn-on-flyspell)
 
-;; Autolad Octave mode for *.m files
+;; Ask for y/n keypress instead of typing out `yes' or `no'
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Autolad Octave mode for *.m files and change default comment character to `%'
 (autoload 'octave-mode "octave-mod" nil t)
+(define-derived-mode custom-octave-mode octave-mode "CustomOctaveMode"
+  "Comments start with `%'."
+  (set (make-local-variable 'comment-start) "%"))
 (setq auto-mode-alist
-      (cons '("\\.m$" . octave-mode) auto-mode-alist))
-
-;; Jade- and Stylus-modes
-(add-to-list 'load-path "~/.emacs.d/jade-mode")
-(require 'sws-mode)
-(require 'jade-mode)
-(add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
-(add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
+      (cons '("\\.m$" . custom-octave-mode) auto-mode-alist))
 
 ;; Toggle window split (Only works for two windows within single frame)
 (defun toggle-window-split ()
@@ -114,6 +140,31 @@
 (global-set-key (kbd "S-<up>") 'windmove-up)
 (global-set-key (kbd "S-<down>") 'windmove-down)
 
+;; buffer-move keybinds
+(global-set-key (kbd "<C-S-up>")     'buf-move-up)
+(global-set-key (kbd "<C-S-down>")   'buf-move-down)
+(global-set-key (kbd "<C-S-left>")   'buf-move-left)
+(global-set-key (kbd "<C-S-right>")  'buf-move-right)
+
+;; Define escape sequences for accessibility on tty
+(define-key input-decode-map "\e[1;2A" [S-up])
+(define-key input-decode-map "\e[1;2B" [S-down])
+(define-key input-decode-map "\e[1;2C" [S-right])
+(define-key input-decode-map "\e[1;2D" [S-left])
+(define-key input-decode-map "\e[1;3A" [M-up])
+(define-key input-decode-map "\e[1;3B" [M-down])
+(define-key input-decode-map "\e[1;3C" [M-right])
+(define-key input-decode-map "\e[1;3D" [M-left])
+(define-key input-decode-map "\e[1;5A" [C-up])
+(define-key input-decode-map "\e[1;5B" [C-down])
+(define-key input-decode-map "\e[1;5C" [C-right])
+(define-key input-decode-map "\e[1;5D" [C-left])
+(define-key input-decode-map "\e[1;4A" [S-M-up])
+(define-key input-decode-map "\e[1;4B" [S-M-down])
+(define-key input-decode-map "\e[1;4C" [S-M-right])
+(define-key input-decode-map "\e[1;4D" [S-M-left])
+
+
 
 ;;;; Custom
 
@@ -122,76 +173,25 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(ansi-color-names-vector
+   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(ispell-highlight-face (quote flyspell-incorrect))
  '(linum-format (quote "%3d"))
- '(org-calc-default-modes (quote (calc-internal-prec 20 calc-float-format (float 8) calc-angle-mode rad calc-prefer-frac nil calc-symbolic-mode nil calc-date-format (YYYY "-" MM "-" DD " " Www (" " hh ":" mm)) calc-display-working-message t)))
+ '(org-agenda-files nil)
+ '(org-calc-default-modes
+   (quote
+    (calc-internal-prec 20 calc-float-format
+			(float 8)
+			calc-angle-mode rad calc-prefer-frac nil calc-symbolic-mode nil calc-date-format
+			(YYYY "-" MM "-" DD " " Www
+			      (" " hh ":" mm))
+			calc-display-working-message t)))
  '(org-completion-use-ido t)
  '(org-highlight-latex-and-related (quote (latex)))
- '(org-html-mathjax-template "<script type=\"text/javascript\" src=\"%PATH\"></script>
-<script type=\"text/javascript\">
-<!--/*--><![CDATA[/*><!--*/
-    MathJax.Hub.Config({
-        // Only one of the two following lines, depending on user settings
-        // First allows browser-native MathML display, second forces HTML/CSS
-        :MMLYES: config: [\"MMLorHTML.js\"], jax: [\"input/TeX\"],
-        :MMLNO: jax: [\"input/TeX\", \"output/HTML-CSS\"],
-        extensions: [\"tex2jax.js\",\"TeX/AMSmath.js\",\"TeX/AMSsymbols.js\",
-                     \"TeX/noUndefined.js\"],
-        tex2jax: {
-            inlineMath: [ [\"\\\\(\",\"\\\\)\"] ],
-            displayMath: [ ['$$','$$'], [\"\\\\[\",\"\\\\]\"], [\"\\\\begin{displaymath}\",\"\\\\end{displaymath}\"] ],
-            skipTags: [\"script\",\"noscript\",\"style\",\"textarea\",\"pre\",\"code\"],
-            ignoreClass: \"tex2jax_ignore\",
-            processEscapes: false,
-            processEnvironments: true,
-            preview: \"TeX\"
-        },
-        showProcessingMessages: true,
-        displayAlign: \"%ALIGN\",
-        displayIndent: \"%INDENT\",
-
-        \"HTML-CSS\": {
-             scale: %SCALE,
-             availableFonts: [\"STIX\",\"TeX\"],
-             preferredFont: \"TeX\",
-             webFont: \"TeX\",
-             imageFont: \"TeX\",
-             showMathMenu: true,
-             styles: {			// increase margins
-	         \".MathJax_Display\": {
-                     \"text-align\": \"center\",
-                     margin: \"1.75em 0em\"
-                 }
-	     }
-        },
-        MMLorHTML: {
-             prefer: {
-                 MSIE:    \"MML\",
-                 Firefox: \"MML\",
-                 Opera:   \"HTML\",
-                 other:   \"HTML\"
-             }
-        },
-        TeX: {
-             Macros: {
-                 cov: \"\\\\mathrm{cov}\",
-                 corr: \"\\\\mathrm{corr}\",
-                 brac: [\"{\\\\left( #1\\\\right)}\", 1],
-                 Brac: [\"{\\\\left[ #1\\\\right]}\", 1],
-                 Brace: [\"{\\\\left\\\\{ #1\\\\right\\\\}}\", 1],
-                 abs: [\"{\\\\left\\\\lvert #1\\\\right\\\\rvert}\", 1],
-                 Expect: [\"{\\\\mathrm{E}\\\\Brac{#1}}\", 1],
-                 pD: [\"{\\\\frac{\\\\partial #1}{\\\\partial #2}}\", 2],
-                 coloneqq: \"{\\\\mathrel{\\\\vcenter{:}}=}\",
-                 intercal: \"{\\\\top}\",
-                 bm: [\"{\\\\bf #1}\", 1]
-             }
-        }
-    });
-/*]]>*///-->
-</script>")
  '(org-latex-default-class "book")
+ '(package-selected-packages
+   (quote
+    (ess htmlize web-mode powerline color-theme-solarized ac-octave ac-math ac-html-csswatcher ac-html-bootstrap ac-html ac-js2 ac-ispell auto-complete yasnippet stylus-mode jade-mode auctex kanban smooth-scrolling smartparens edit-server buffer-move ace-jump-mode)))
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
 (custom-set-faces
@@ -219,8 +219,9 @@
  '(font-lock-keyword-face ((t (:foreground "cyan3" :inverse-video nil :underline nil :slant normal :weight normal))))
  '(font-lock-string-face ((t (:foreground "color-34"))))
  '(font-lock-type-face ((t (:foreground "maroon" :inverse-video nil :underline nil :slant normal :weight normal))))
- '(font-lock-variable-name-face ((t (:foreground "blue"))))
+ '(font-lock-variable-name-face ((t (:foreground "dodger blue" :inverse-video nil :underline nil :slant normal :weight normal))))
  '(org-latex-and-related ((t (:foreground "color-59"))))
+ '(sp-pair-overlay-face ((t (:background "brightblack" :foreground "white"))))
  '(sp-show-pair-enclosing ((t (:background "brightblack" :foreground "white"))))
  '(sp-show-pair-match-face ((t (:background "dark cyan" :foreground "white"))))
  '(sp-show-pair-mismatch-face ((t (:background "dark red" :foreground "white")))))

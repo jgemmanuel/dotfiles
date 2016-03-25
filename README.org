@@ -1,0 +1,37 @@
+* A Typical Installation Script
+
+#+BEGIN_SRC sh :exports code
+  EMACS=$HOME/.emacs.d
+  REPO=$HOME/repos
+  PROFILE=$HOME/.profile
+
+  git clone https://github.com/mkota/dotfiles.git $REPO/dotfiles
+
+  ln -sf $REPO/dotfiles/bashrc_custom $HOME/.bashrc_custom
+  if [ ! -d "$EMACS" ]; then
+      mkdir -p $EMACS
+  fi
+  ln -sf $REPO/dotfiles/emacs.d/* $EMACS/
+  ln -sf $REPO/dotfiles/screenrc $HOME/.screenrc
+  ln -sf $REPO/dotfiles/latexmkrc $HOME/.latexmkrc
+  ln -sf $REPO/dotfiles/octaverc $HOME/.octaverc
+
+  # Environment variables et al
+  cat<<EOF >> $PROFILE
+
+  ## Custom
+
+  export SUDO_EDITOR=/usr/bin/emacs
+  export LANG="en_GB.UTF-8"
+  export LANGUAGE="en_GB:en_US:en"
+  EOF
+  cat<<EOF >> $HOME/.bashrc
+
+  # Custom
+  if [ -f $HOME/.bashrc_custom ]; then
+      . $HOME/.bashrc_custom
+  fi
+  EOF
+  source $PROFILE
+  source $HOME/.bashrc
+#+END_SRC
