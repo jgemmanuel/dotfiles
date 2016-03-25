@@ -2,7 +2,7 @@
 
 #+BEGIN_SRC sh :exports code
   EMACS=$HOME/.emacs.d
-  REPO=$HOME/repos
+  REPO=$HOME/repos/private
   PROFILE=$HOME/.profile
 
   git clone https://github.com/mkota/dotfiles.git $REPO/dotfiles
