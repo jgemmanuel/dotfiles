@@ -29,4 +29,6 @@
 (setq tooltip-use-echo-area t)
 
 ;; Smooth scrolling
+(require 'smooth-scrolling)
+(smooth-scrolling-mode 1)
 ;; (setq smooth-scroll-margin 5)

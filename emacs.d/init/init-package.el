@@ -33,6 +33,8 @@ Return a list of installed packages or nil for every package not installed."
 			  'smartparens
 			  'org-plus-contrib
 			  'htmlize
+			  'js2-mode
+			  'json-mode
 			  'auctex
 			  'jade-mode
 			  'stylus-mode

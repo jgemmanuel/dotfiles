@@ -37,9 +37,12 @@
 
 ;; js-mode
 (setq js-indent-level 2)
-(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
-(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js-mode-hook 'custom-js2-mode-hook)
 (add-hook 'js2-mode-hook 'ac-js2-mode)
+(defun custom-js2-mode-hook ()
+  (when (and (stringp buffer-file-name)
+             (string-match "\.js$" buffer-file-name))
+    (js2-minor-mode)))
 
 ;; ace-jump-mode
 ;; "C-c SPC" --> ace-jump-word-mode
@@ -191,7 +194,7 @@
  '(org-latex-default-class "book")
  '(package-selected-packages
    (quote
-    (ess htmlize web-mode powerline color-theme-solarized ac-octave ac-math ac-html-csswatcher ac-html-bootstrap ac-html ac-js2 ac-ispell auto-complete yasnippet stylus-mode jade-mode auctex kanban smooth-scrolling smartparens edit-server buffer-move ace-jump-mode)))
+    (json-mode minimap sublimity tabbar ess htmlize web-mode powerline color-theme-solarized ac-octave ac-math ac-html-csswatcher ac-html-bootstrap ac-html ac-js2 ac-ispell auto-complete yasnippet stylus-mode jade-mode auctex kanban smooth-scrolling smartparens edit-server buffer-move ace-jump-mode)))
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
 (custom-set-faces
