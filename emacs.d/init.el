@@ -15,7 +15,13 @@
 (load "init-display")			; frame appearance settings
 (load "init-smartparens")		; smartparens settings
 (load "init-org")			; org-mode settings
+(load "init-typescript")		; typescript-settings
 (load "init-templates")			; inserting templates
+
+;; Enable ido-mode
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 
 ;; Configure yasnippet and auto-complete
 ;; Credit: https://truongtx.me/2013/01/06/config-yasnippet-and-autocomplete-on-emacs/
@@ -194,7 +200,7 @@
  '(org-latex-default-class "book")
  '(package-selected-packages
    (quote
-    (json-mode minimap sublimity tabbar ess htmlize web-mode powerline color-theme-solarized ac-octave ac-math ac-html-csswatcher ac-html-bootstrap ac-html ac-js2 ac-ispell auto-complete yasnippet stylus-mode jade-mode auctex kanban smooth-scrolling smartparens edit-server buffer-move ace-jump-mode)))
+    (company jdee tide groovy-mode markdown-mode json-mode minimap sublimity tabbar ess htmlize web-mode powerline color-theme-solarized ac-octave ac-math ac-html-csswatcher ac-html-bootstrap ac-html ac-js2 ac-ispell auto-complete yasnippet stylus-mode jade-mode auctex kanban smooth-scrolling smartparens edit-server buffer-move ace-jump-mode)))
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
 (custom-set-faces

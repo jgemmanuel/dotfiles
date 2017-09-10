@@ -31,13 +31,14 @@ Return a list of installed packages or nil for every package not installed."
 			  'buffer-move
 			  'ace-jump-mode
 			  'smartparens
-			  'org-plus-contrib
 			  'htmlize
 			  'js2-mode
 			  'json-mode
 			  'auctex
 			  'jade-mode
 			  'stylus-mode
+			  'tide
+			  'company
 			  'yasnippet
 			  'auto-complete
 			  'ac-ispell

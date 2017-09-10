@@ -127,6 +127,7 @@
 				    (sh . t)
 				    (python . t)
 				    (org . t)))
+
      ;; fontify source code blocks
      (setq org-src-fontify-natively t)
 
