@@ -1,4 +1,4 @@
-;; Add Melpa repository
+;; Add repositories
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -22,45 +22,42 @@ Return a list of installed packages or nil for every package not installed."
 	   (package-install package)
 	 nil)))
    packages))
+
 ;; Update package list
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
-;; Install missing packages
-(ensure-package-installed 'edit-server
-			  'smooth-scrolling
-			  'buffer-move
-			  'ace-jump-mode
-			  'smartparens
-			  'htmlize
-			  'js2-mode
-			  'json-mode
-			  'auctex
-			  'jade-mode
-			  'stylus-mode
-			  'tide
-			  'company
-			  'yasnippet
-			  'auto-complete
-			  'ac-ispell
-			  'ac-js2
-			  'ac-html
-			  'ac-html-bootstrap
-			  'ac-html-csswatcher
-			  'ac-math
-			  'ac-octave)
-;; (if (display-graphic-p)
-;;     (progn
-;;       ;; if graphic
-;;       (your)
-;;       (code))
-;;   ;; else (optional)
-;;   (your)
-;;   (code))
-(when (display-graphic-p)
-  (ensure-package-installed 'color-theme-solarized
-			    'powerline))
 
-;; ;; Activate installed packages
+;; Install missing packages
+(ensure-package-installed
+ 'edit-server
+ 'smooth-scrolling
+ 'buffer-move
+ 'ace-jump-mode
+ 'smartparens
+ 'htmlize
+ 'js2-mode
+ 'json-mode
+ 'auctex
+ 'jade-mode
+ 'stylus-mode
+ 'tide
+ 'company
+ 'iedit
+ 'auto-complete
+ 'yasnippet
+ 'ac-ispell
+ 'ac-js2
+ 'ac-html
+ 'ac-math
+ 'ac-octave)
+
+;; Install theme when using GUI emacs
+(when (display-graphic-p)
+  (ensure-package-installed
+   'color-theme-solarized
+   'powerline))
+
+;; Activate installed packages
 (package-initialize)
 
 ;; Edit server

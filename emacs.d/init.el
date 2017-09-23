@@ -17,24 +17,12 @@
 (load "init-org")			; org-mode settings
 (load "init-typescript")		; typescript-settings
 (load "init-templates")			; inserting templates
+(load "init-intellisense")
 
 ;; Enable ido-mode
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
-
-;; Configure yasnippet and auto-complete
-;; Credit: https://truongtx.me/2013/01/06/config-yasnippet-and-autocomplete-on-emacs/
-;; Note: auto complete mod should be loaded after yasnippet so that they can
-;; work together
-(yas-global-mode 1)
-;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-config-default)
-;;; set the trigger key so that it can work together with yasnippet on tab key,
-;;; if the word exists in yasnippet, pressing tab will cause yasnippet to
-;;; activate, otherwise, auto-complete will
-(ac-set-trigger-key "TAB")
-(ac-set-trigger-key "<tab>")
 
 ;; Set TeX input method as default (C-\ to toggle)
 ;; Also try C-x 8 C-h
@@ -200,7 +188,7 @@
  '(org-latex-default-class "book")
  '(package-selected-packages
    (quote
-    (company jdee tide groovy-mode markdown-mode json-mode minimap sublimity tabbar ess htmlize web-mode powerline color-theme-solarized ac-octave ac-math ac-html-csswatcher ac-html-bootstrap ac-html ac-js2 ac-ispell auto-complete yasnippet stylus-mode jade-mode auctex kanban smooth-scrolling smartparens edit-server buffer-move ace-jump-mode)))
+    (flymake-cursor iedit flymake-sass flymake-shell company jdee tide groovy-mode markdown-mode json-mode minimap sublimity tabbar ess htmlize web-mode powerline color-theme-solarized ac-octave ac-math ac-html-csswatcher ac-html-bootstrap ac-html ac-js2 ac-ispell auto-complete yasnippet stylus-mode jade-mode auctex kanban smooth-scrolling smartparens edit-server buffer-move ace-jump-mode)))
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
 (custom-set-faces
